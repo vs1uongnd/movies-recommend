@@ -4,6 +4,7 @@ const headers = {
   Authorization: 'bearer ' + API_TOKEN,
 };
 
-export const fetcher = (url: string) => {
-  fetch(BASE_URL + url, { headers: headers }).then((res) => res.json());
-};
+export const fetcher = (url: string) =>
+  fetch(url, {
+    headers,
+  }).then((res) => res.json());
