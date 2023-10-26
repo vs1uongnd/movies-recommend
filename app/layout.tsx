@@ -3,7 +3,6 @@ import { Roboto } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import { TmdbContextProvider } from '@/context/tmdb-context';
 
 const roboto = Roboto({
   weight: '400',
@@ -21,13 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <TmdbContextProvider>
-        <body className={roboto.className}>
-          <Header />
-          {children}
-          <Footer />
-        </body>
-      </TmdbContextProvider>
+      <body className={roboto.className}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -1,32 +1,37 @@
 'use client';
-import MovieCard from './MovieCard';
-import useSWR from 'swr';
-import { Movie } from '@/utils/types';
+
 import { fetcher } from '../utils/api';
 import { BASE_URL } from '@/utils/constants';
+import MoviesList from './MoviesList';
+import useSWRInfinite from 'swr/infinite';
+
+const getKey = (
+  pageIndex: number,
+  previousPageData: { page: number; total_pages: number }
+) => {
+  pageIndex = pageIndex + 1;
+  if (previousPageData && pageIndex >= previousPageData['total_pages'])
+    return null; // reached the end
+  return `${BASE_URL}/discover/movie?page=${pageIndex}`; // SWR key
+};
 
 const Explore = () => {
-  const {
-    data,
-    error,
-    isLoading,
-  }: {
-    data: { results: Movie[] };
-    error: string | null | undefined;
-    isLoading: boolean;
-  } = useSWR(`${BASE_URL}/discover/movie`, fetcher);
-
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  const { data, size, setSize } = useSWRInfinite(getKey, fetcher);
+  if (!data) return 'loading';
 
   return (
     <div className='mx-auto max-w-[1200px] px-5'>
       <div></div>
-      <div className='grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5 lg:grid-cols-5'>
-        {data?.results?.map((item, index) => {
-          return <MovieCard key={index} data={item} />;
-        })}
-      </div>
+      {data.map((item) => (
+        <MoviesList key={item.page} movies={item.results} />
+      ))}
+      <button
+        type='button'
+        className='relative left-1/2 my-5 inline-flex -translate-x-1/2 items-center rounded-lg bg-[#F7BE38] px-5 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-[#F7BE38]/90'
+        onClick={() => setSize(size + 1)}
+      >
+        Load More
+      </button>
     </div>
   );
 };
