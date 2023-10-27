@@ -13,7 +13,7 @@ const Genres = ({ genreIds }: { genreIds: number[] }) => {
         return (
           <div
             key={g}
-            className='whitespace-nowrap rounded bg-[#F7BE38] px-[5px] text-[12px] text-gray-900'
+            className='text-body-black bg-color-primary whitespace-nowrap rounded px-[5px] text-[12px]'
           >
             {genreObj?.name}
           </div>

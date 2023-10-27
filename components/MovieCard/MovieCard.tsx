@@ -10,9 +10,10 @@ import classes from './MovieCard.module.css';
 const MovieCard = ({ movie }: { movie: Movie }) => {
   const { data: baseUrl } = useApiConfig();
 
-  const posterUrl = movie.poster_path
-    ? baseUrl + 'original' + movie.poster_path
-    : PosterFallback;
+  const posterUrl =
+    movie.poster_path && baseUrl
+      ? baseUrl + 'original' + movie.poster_path
+      : '../../assets/no-poster.png';
 
   return (
     <div className='movie-card mb-6 cursor-pointer'>

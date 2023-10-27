@@ -11,7 +11,9 @@ const CircleRating = ({
   return (
     <div
       className={
-        'h-[50px] w-[50px] rounded-full bg-white p-[2px]' + ' ' + className
+        'flex h-[40px] w-[40px] shrink-0 rounded-full bg-white p-[2px]' +
+        ' ' +
+        className
       }
     >
       <CircularProgressbar

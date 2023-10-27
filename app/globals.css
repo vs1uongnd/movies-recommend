@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-primary {
+  @apply bg-color-primary hover:bg-color-primary/90 text-body-black inline-flex items-center rounded-lg px-5 py-2.5 text-center text-sm font-medium;
+}
