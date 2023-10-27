@@ -1,14 +1,13 @@
 'use client';
 
-import { fetcher } from '../utils/api';
 import { BASE_URL } from '@/utils/constants';
-import MoviesList from './MoviesList';
-import useSWRInfinite from 'swr/infinite';
-import LoadMore from './LoadMore';
-import Filter from './Filter';
 import { useState } from 'react';
+import MoviesAndFilter from './MoviesAndFilter';
 
 const Explore = () => {
+  const [genres, setGenres] = useState<number[]>([]);
+  const [sort, setSort] = useState('');
+
   const getKey = (
     pageIndex: number,
     previousPageData: { page: number; total_pages: number }
@@ -26,10 +25,6 @@ const Explore = () => {
     }
     return `${BASE_URL}/discover/movie?page=${pageIndex}${withGenres}${withSort}`; // SWR key
   };
-
-  const [genres, setGenres] = useState<number[]>([]);
-  const [sort, setSort] = useState('');
-  const { data, size, setSize } = useSWRInfinite(getKey, fetcher);
 
   const onFilter = (selectedItems: number | string, action: string) => {
     if (action === 'genres') {
@@ -49,14 +44,11 @@ const Explore = () => {
   };
 
   return (
-    <div className='mx-auto max-w-[1200px] px-5 py-20'>
-      <Filter onFilter={onFilter} />
-      {data &&
-        data.map((item) => (
-          <MoviesList key={item.page} movies={item.results} />
-        ))}
-      <LoadMore onClick={() => setSize(size + 1)} />
-    </div>
+    <MoviesAndFilter
+      namePage='All Movies'
+      getKey={getKey}
+      onFilter={onFilter}
+    />
   );
 };
 

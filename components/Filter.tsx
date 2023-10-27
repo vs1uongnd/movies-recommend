@@ -7,7 +7,7 @@ const Filter = ({
   onFilter: (selectedItems: number | string, action: string) => void;
 }) => {
   return (
-    <div className='flex gap-2 py-8 md:gap-8'>
+    <div className='flex gap-2 pb-8 md:gap-8'>
       <SelectGenre onFilter={onFilter} />
       <Sort onFilter={onFilter} />
     </div>

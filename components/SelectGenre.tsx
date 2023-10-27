@@ -1,3 +1,5 @@
+'use client';
+
 import { useGenre } from '@/hooks/customHook';
 import { useState } from 'react';
 
@@ -55,7 +57,7 @@ const SelectGenre = ({
                   />
                   <label
                     htmlFor={`genre-${genre.id}`}
-                    className='text-body-black ml-2 w-full rounded text-sm font-medium '
+                    className='ml-2 w-full rounded text-sm font-medium text-body-black '
                   >
                     {genre.name}
                   </label>
