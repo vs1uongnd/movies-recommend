@@ -1,6 +1,6 @@
 'use client';
 import { BASE_URL } from '@/utils/constants';
-import MoviesAndFilter from '@/components/MoviesAndFilter';
+import MoviesAndFilter from '@/components/MoviesList/MoviesAndFilter';
 
 const getKey = (
   pageIndex: number,

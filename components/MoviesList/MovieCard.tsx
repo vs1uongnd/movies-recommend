@@ -1,10 +1,10 @@
 import PosterFallback from '../../assets/no-poster.png';
-import CircleRating from '../CircleRating';
-import Genres from '../Genres';
+import CircleRating from '../Global/CircleRating';
+import Genres from '../Global/Genres';
 import dayjs from 'dayjs';
 import { Movie } from '@/utils/types';
 import { useApiConfig } from '@/utils/api';
-import LazyImage from '../LazyImage';
+import LazyImage from '../Global/LazyImage';
 import classes from './MovieCard.module.css';
 import Link from 'next/link';
 

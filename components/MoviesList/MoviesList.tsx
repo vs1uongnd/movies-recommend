@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieCard from './MovieCard/MovieCard';
+import MovieCard from './MovieCard';
 import { Movie } from '@/utils/types';
 
 const MoviesList = ({ movies }: { movies: Movie[] }) => {

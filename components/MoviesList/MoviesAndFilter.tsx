@@ -1,12 +1,12 @@
 'use client';
 
 import useSWRInfinite from 'swr/infinite';
-import { fetcher } from '../utils/api';
+import { fetcher } from '../../utils/api';
 import LoadMore from './LoadMore';
 import Filter from './Filter';
 import MoviesList from './MoviesList';
-import Loading from './Loading';
-import Error from './Error';
+import Loading from '../Global/Loading';
+import Error from '../Global/Error';
 
 const MoviesAndFilter = (props: {
   getKey: (

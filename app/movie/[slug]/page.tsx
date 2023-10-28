@@ -1,4 +1,4 @@
-import DetailSingleMovie from '@/components/SingleMovie/DetailSingleMovie';
+import DetailSingleMovie from '@/components/SingleMoviePage/DetailSingleMovie';
 import { getData } from '@/utils/api';
 import { SingleMovie } from '@/utils/types';
 

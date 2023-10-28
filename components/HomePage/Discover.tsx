@@ -2,7 +2,7 @@
 
 import { BASE_URL } from '@/utils/constants';
 import { useState } from 'react';
-import MoviesAndFilter from './MoviesAndFilter';
+import MoviesAndFilter from '../MoviesList/MoviesAndFilter';
 
 const Discover = () => {
   const [genres, setGenres] = useState<number[]>([]);

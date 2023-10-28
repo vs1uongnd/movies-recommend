@@ -1,7 +1,7 @@
 import { Credits, Crew, SingleMovie } from '@/utils/types';
 import dayjs from 'dayjs';
-import Genres from '../Genres';
-import CircleRating from '../CircleRating';
+import Genres from '../Global/Genres';
+import CircleRating from '../Global/CircleRating';
 import { convertToHoursAndMinutes } from '@/utils/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
