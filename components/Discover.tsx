@@ -4,7 +4,7 @@ import { BASE_URL } from '@/utils/constants';
 import { useState } from 'react';
 import MoviesAndFilter from './MoviesAndFilter';
 
-const Explore = () => {
+const Discover = () => {
   const [genres, setGenres] = useState<number[]>([]);
   const [sort, setSort] = useState('');
 
@@ -52,4 +52,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default Discover;

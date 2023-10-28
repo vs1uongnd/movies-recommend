@@ -1,6 +1,4 @@
-'use client';
-
-import { useGenre } from '@/hooks/customHook';
+import { useGenres } from '@/utils/api';
 import { useState } from 'react';
 
 const SelectGenre = ({
@@ -9,7 +7,7 @@ const SelectGenre = ({
   onFilter: (selectedItems: string | number, action: string) => void;
 }) => {
   const [dropdownOpened, setDropdownOpened] = useState(false);
-  const { data } = useGenre();
+  const { data } = useGenres();
   return (
     <div className='relative '>
       <button

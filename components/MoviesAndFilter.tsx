@@ -5,6 +5,8 @@ import { fetcher } from '../utils/api';
 import LoadMore from './LoadMore';
 import Filter from './Filter';
 import MoviesList from './MoviesList';
+import Loading from './Loading';
+import Error from './Error';
 
 const MoviesAndFilter = (props: {
   getKey: (
@@ -15,7 +17,14 @@ const MoviesAndFilter = (props: {
   namePage: string;
 }) => {
   const { getKey, onFilter, namePage } = props;
-  const { data, size, setSize } = useSWRInfinite(getKey, fetcher);
+  const { data, size, setSize, isLoading, error } = useSWRInfinite(
+    getKey,
+    fetcher
+  );
+
+  if (isLoading) return <Loading />;
+
+  if (error) return <Error message={error.message} />;
 
   return (
     <div className='mx-auto max-w-[1200px] px-5 py-16'>

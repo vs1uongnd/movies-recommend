@@ -1,12 +1,18 @@
+'use client';
+
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const CircleRating = ({
   rating,
   className,
+  textColor,
+  trailColor,
 }: {
   rating: number;
-  className: string;
+  className?: string;
+  textColor?: string;
+  trailColor?: string;
 }) => {
   return (
     <div
@@ -22,9 +28,9 @@ const CircleRating = ({
         text={String(rating)}
         styles={buildStyles({
           pathColor: rating < 5 ? 'red' : rating < 7 ? 'orange' : 'green',
-          textColor: '#000',
+          textColor: `${textColor || '#000'}`,
           textSize: '34px',
-          trailColor: 'transparent',
+          trailColor: `${trailColor || 'transparent'}`,
         })}
       />
     </div>

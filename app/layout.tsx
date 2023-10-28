@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={roboto.className}>
         <Header />
-        <main className='bg-[#04152d] py-20'>{children}</main>
+        <main className='bg-[#04152d] pt-[72px]'>{children}</main>
         <Footer />
       </body>
     </html>

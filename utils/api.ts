@@ -1,10 +1,37 @@
-import { BASE_URL, API_TOKEN } from './constants';
-
-const headers = {
-  Authorization: 'bearer ' + API_TOKEN,
-};
+import useSWR from 'swr';
+import { BASE_URL, headers } from './constants';
 
 export const fetcher = (url: string) =>
   fetch(url, {
     headers,
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error('Something went wrong with the request');
+    }
+    return res.json();
+  });
+
+// Server Component
+export async function getData(path: string) {
+  const res = await fetch(`${BASE_URL}${path}`, {
+    headers: headers,
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+// Client Component
+export const useGenres = () => {
+  const { data }: { data: { genres: Array<{ id: number; name: string }> } } =
+    useSWR(`${BASE_URL}/genre/movie/list`, fetcher);
+  return { data };
+};
+
+export const useApiConfig = () => {
+  const { data } = useSWR(`${BASE_URL}/configuration`, fetcher);
+  return { data: data?.images?.base_url };
+};
