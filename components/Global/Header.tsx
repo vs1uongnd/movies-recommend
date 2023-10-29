@@ -28,7 +28,7 @@ const Header = () => {
           </span>
         </Link>
         <div className='flex md:order-2'>
-          {!hasCookie('sessionId') ? (
+          {!hasCookie('sessionId') && (
             <Link
               href='/sign-in'
               type='button'
@@ -36,7 +36,8 @@ const Header = () => {
             >
               Get started
             </Link>
-          ) : (
+          )}
+          {hasCookie('sessionId') && (
             <button
               type='button'
               className='button-primary mr-3 md:mr-0'

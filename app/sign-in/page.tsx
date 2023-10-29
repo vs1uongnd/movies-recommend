@@ -20,17 +20,14 @@ const SignIn = () => {
       const dataCreateRequestToken = await getData('/authentication/token/new');
       const requestToken = dataCreateRequestToken.request_token;
 
-      const dataValidate = await getData(
-        '/authentication/token/validate_with_login',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            username: usernameInput.current?.value,
-            password: passwordInput.current?.value,
-            request_token: requestToken,
-          }),
-        }
-      );
+      await getData('/authentication/token/validate_with_login', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: usernameInput.current?.value,
+          password: passwordInput.current?.value,
+          request_token: requestToken,
+        }),
+      });
       const dataCreateSession = await getData(
         `/authentication/session/new?request_token=${requestToken}`
       );
