@@ -2,7 +2,7 @@
 import { BASE_URL } from '@/utils/constants';
 import MoviesAndFilter from '@/components/MoviesList/MoviesAndFilter';
 import { redirect } from 'next/navigation';
-import { useCookies } from 'next-client-cookies';
+import { hasCookie } from 'cookies-next';
 
 const getKey = (
   pageIndex: number,
@@ -15,8 +15,7 @@ const getKey = (
 };
 
 const Upcoming = () => {
-  const cookies = useCookies();
-  if (!cookies.get('sessionId')) redirect('/sign-in');
+  if (!hasCookie('sessionId')) redirect('/');
   return <MoviesAndFilter namePage='Upcoming' getKey={getKey} />;
 };
 
