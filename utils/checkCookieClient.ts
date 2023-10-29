@@ -1,11 +1,11 @@
-import { useCookies } from 'next-client-cookies';
+// import { useCookies } from 'next-client-cookies';
 
-export const useCheckSignIn = () => {
-  const cookieStore = useCookies();
+// export const useCheckSignIn = () => {
+//   const cookieStore = useCookies();
 
-  const isSignIn = cookieStore.get('sessionId');
-  if (!isSignIn || isSignIn.trim() === '') {
-    return false;
-  }
-  return true;
-};
+//   const isSignIn = cookieStore.get('sessionId');
+//   if (!isSignIn || isSignIn.trim() === '') {
+//     return false;
+//   }
+//   return true;
+// };

@@ -1,8 +1,8 @@
 'use client';
 import { BASE_URL } from '@/utils/constants';
 import MoviesAndFilter from '@/components/MoviesList/MoviesAndFilter';
-import { useCheckSignIn } from '@/utils/checkCookieClient';
 import { redirect } from 'next/navigation';
+import { hasCookie } from 'cookies-next';
 
 const getKey = (
   pageIndex: number,
@@ -15,7 +15,7 @@ const getKey = (
 };
 
 const Upcoming = () => {
-  if (!useCheckSignIn()) redirect('/');
+  if (!hasCookie('sessionId')) redirect('/');
   return <MoviesAndFilter namePage='Upcoming' getKey={getKey} />;
 };
 

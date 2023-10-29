@@ -3,16 +3,14 @@
 import { getData } from '@/utils/api';
 import Link from 'next/link';
 import { useState, useEffect, useRef, FormEvent } from 'react';
-import { useCookies } from 'next-client-cookies';
 import { useRouter } from 'next/navigation';
-import { useCheckSignIn } from '@/utils/checkCookieClient';
+import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
 
 const SignIn = () => {
   const usernameInput = useRef<HTMLInputElement>(null);
   const passwordInput = useRef<HTMLInputElement>(null);
   const [disabledInput, setDisabledInput] = useState<boolean>(false);
   const [errorLogin, setErrorLogin] = useState<string>('');
-  const cookies = useCookies();
   const router = useRouter();
 
   const onFormSubmit = async (e: FormEvent) => {
@@ -36,7 +34,7 @@ const SignIn = () => {
       const dataCreateSession = await getData(
         `/authentication/session/new?request_token=${requestToken}`
       );
-      cookies.set('sessionId', dataCreateSession.session_id);
+      setCookie('sessionId', dataCreateSession.session_id);
       setDisabledInput(false);
       router.push('/');
     } catch (error: any) {
@@ -49,14 +47,14 @@ const SignIn = () => {
     if (errorLogin.trim() !== '') setErrorLogin('');
   };
 
-  if (useCheckSignIn()) {
+  if (hasCookie('sessionId')) {
     return (
       <div className='flex h-screen flex-col items-center justify-center'>
         <h1 className='mb-4 text-2xl text-white'>You are signed in</h1>
         <button
           className='button-primary'
           onClick={() => {
-            cookies.remove('sessionId');
+            deleteCookie('sessionId');
             router.push('/sign-in');
           }}
         >
