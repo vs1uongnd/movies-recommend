@@ -1,8 +1,11 @@
 'use client';
 
+import { useCheckSignIn } from '@/utils/checkCookieClient';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { useCookies } from 'next-client-cookies';
+import { useRouter } from 'next/navigation';
 
 const navItems = [
   { name: 'Home', pathname: '/' },
@@ -13,6 +16,8 @@ const navItems = [
 const Header = () => {
   const pathname = usePathname();
   const [menuMobileOpened, setMenuMobileOpened] = useState(false);
+  const cookies = useCookies();
+  const router = useRouter();
 
   return (
     <header className='fixed left-0 top-0 z-20 w-full border-b border-gray-600 bg-gray-900'>
@@ -23,9 +28,26 @@ const Header = () => {
           </span>
         </Link>
         <div className='flex md:order-2'>
-          <button type='button' className='button-primary  mr-3 md:mr-0'>
-            Get started
-          </button>
+          {!useCheckSignIn() ? (
+            <Link
+              href='/sign-in'
+              type='button'
+              className='button-primary mr-3 md:mr-0'
+            >
+              Get started
+            </Link>
+          ) : (
+            <button
+              type='button'
+              className='button-primary mr-3 md:mr-0'
+              onClick={() => {
+                cookies.remove('sessionId');
+                router.push('/sign-in');
+              }}
+            >
+              Sign out
+            </button>
+          )}
           <button
             data-collapse-toggle='navbar-sticky'
             type='button'

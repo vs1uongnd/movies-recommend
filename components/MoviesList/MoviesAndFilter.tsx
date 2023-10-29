@@ -22,7 +22,6 @@ const MoviesAndFilter = (props: {
     getKey,
     fetcher
   );
-  console.log(data);
   if (isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
   return (
@@ -36,7 +35,7 @@ const MoviesAndFilter = (props: {
               <MoviesList key={item.page} movies={item.results} />
             ))
           ) : (
-            <div className='flex h-[70vh] flex-col items-center justify-center'>
+            <div className='flex flex-col items-center justify-center py-60'>
               <h3 className='mb-6 text-center text-xl text-white'>
                 Nothing in your eyes
               </h3>
