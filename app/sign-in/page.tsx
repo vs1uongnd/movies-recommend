@@ -10,6 +10,7 @@ import { useCheckSignIn } from '@/utils/checkCookieClient';
 const SignIn = () => {
   const usernameInput = useRef<HTMLInputElement>(null);
   const passwordInput = useRef<HTMLInputElement>(null);
+  const [disabledInput, setDisabledInput] = useState<boolean>(false);
   const [errorLogin, setErrorLogin] = useState<string>('');
   const cookies = useCookies();
   const router = useRouter();
@@ -17,6 +18,7 @@ const SignIn = () => {
   const onFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
+      setDisabledInput(true);
       const dataCreateRequestToken = await getData('/authentication/token/new');
       const requestToken = dataCreateRequestToken.request_token;
 
@@ -35,9 +37,11 @@ const SignIn = () => {
         `/authentication/session/new?request_token=${requestToken}`
       );
       cookies.set('sessionId', dataCreateSession.session_id);
+      setDisabledInput(false);
       router.push('/');
     } catch (error: any) {
       setErrorLogin(error.message);
+      setDisabledInput(false);
     }
   };
 
@@ -85,6 +89,7 @@ const SignIn = () => {
               required
               ref={usernameInput}
               onChange={clearErrorMessage}
+              disabled={disabledInput}
             />
           </div>
           <div>
@@ -103,6 +108,7 @@ const SignIn = () => {
               required
               ref={passwordInput}
               onChange={clearErrorMessage}
+              disabled={disabledInput}
             />
           </div>
           <span className='text-xs text-red-500'>{errorLogin}</span>
