@@ -1,10 +1,11 @@
 import Explore from '@/components/HomePage/Discover';
 import HeroBanner from '@/components/HomePage/HeroBanner';
-import { checkSignInServer } from '@/utils/checkCookieServer';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 
 export default async function Home() {
-  if (!checkSignInServer()) redirect('/sign-in');
+  const cookieStore = cookies();
+  if (!cookieStore.get('sessionId')) redirect('/sign-in');
   return (
     <>
       <HeroBanner />

@@ -1,6 +1,5 @@
 'use client';
 
-import { useCheckSignIn } from '@/utils/checkCookieClient';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -28,7 +27,7 @@ const Header = () => {
           </span>
         </Link>
         <div className='flex md:order-2'>
-          {!useCheckSignIn() ? (
+          {!cookies.get('sessionId') ? (
             <Link
               href='/sign-in'
               type='button'
