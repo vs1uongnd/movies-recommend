@@ -45,7 +45,7 @@ const Discover = () => {
 
   return (
     <MoviesAndFilter
-      namePage='All Movies'
+      namePage='Movies of all times'
       getKey={getKey}
       onFilter={onFilter}
     />

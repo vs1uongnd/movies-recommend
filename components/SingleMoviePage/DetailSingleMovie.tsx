@@ -48,7 +48,7 @@ const DetailSingleMovie = async ({
   });
 
   return (
-    <div className='relative py-16'>
+    <div className='relative py-8'>
       <div className='absolute left-0 top-0 h-full w-full overflow-hidden opacity-10'>
         {baseImgUrl && (
           <Image
@@ -59,7 +59,7 @@ const DetailSingleMovie = async ({
           />
         )}
       </div>
-
+      <div className='opacity-layer'></div>
       <div className='content relative z-10 mx-auto flex max-w-[1200px] flex-col gap-6 px-5 md:flex-row md:justify-between md:gap-12'>
         <div className='flex justify-center md:items-start'>
           <Image

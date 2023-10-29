@@ -13,7 +13,6 @@ const navItems = [
 const Header = () => {
   const pathname = usePathname();
   const [menuMobileOpened, setMenuMobileOpened] = useState(false);
-  console.log(pathname);
 
   return (
     <header className='fixed left-0 top-0 z-20 w-full border-b border-gray-600 bg-gray-900'>

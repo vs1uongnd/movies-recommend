@@ -7,14 +7,10 @@ import { useApiConfig } from '@/utils/api';
 import LazyImage from '../Global/LazyImage';
 import classes from './MovieCard.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const MovieCard = ({ movie }: { movie: Movie }) => {
-  const { data: baseUrl } = useApiConfig();
-
-  const posterUrl =
-    movie.poster_path && baseUrl
-      ? baseUrl + 'original' + movie.poster_path
-      : '../../assets/no-poster.png';
+  const { data: baseUrl, isLoading } = useApiConfig();
 
   return (
     <Link
@@ -22,14 +18,25 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
       className='movie-card mb-6 cursor-pointer'
     >
       <div className='relative mb-7 flex aspect-[1/1.5] items-end justify-between p-[10px]'>
-        <LazyImage
-          alt={movie.title}
-          src={posterUrl}
-          className={classes.movieCardImage}
-        />
+        {movie.poster_path && baseUrl ? (
+          <LazyImage
+            alt={movie.title}
+            src={baseUrl + 'original' + movie.poster_path}
+            className={classes.movieCardImage}
+          />
+        ) : (
+          !isLoading && (
+            <Image
+              src={PosterFallback}
+              alt={movie.title}
+              fill={true}
+              className={classes.movieCardImage}
+            />
+          )
+        )}
         <CircleRating
           rating={Number(movie.vote_average.toFixed(1))}
-          className='relative top-[32px]'
+          className='relative top-[32px] h-[40px] w-[40px] bg-white'
         />
         <Genres
           genreIds={movie.genre_ids.slice(0, 2)}

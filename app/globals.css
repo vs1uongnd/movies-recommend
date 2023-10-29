@@ -3,5 +3,10 @@
 @tailwind utilities;
 
 .button-primary {
-  @apply bg-color-primary hover:bg-color-primary/90 text-body-black inline-flex items-center rounded-lg px-5 py-2.5 text-center text-sm font-medium;
+  @apply inline-flex items-center rounded-lg bg-color-primary px-5 py-2.5 text-center text-sm font-medium text-body-black hover:bg-color-primary/90;
+}
+
+.opacity-layer {
+  @apply absolute bottom-0 left-0 h-[250px] w-full;
+  background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%);
 }

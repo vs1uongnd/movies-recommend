@@ -18,7 +18,7 @@ export async function getData(path: string) {
   });
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Something went wrong with the request');
   }
 
   return res.json();
@@ -32,6 +32,6 @@ export const useGenres = () => {
 };
 
 export const useApiConfig = () => {
-  const { data } = useSWR(`${BASE_URL}/configuration`, fetcher);
-  return { data: data?.images?.base_url };
+  const { data, isLoading } = useSWR(`${BASE_URL}/configuration`, fetcher);
+  return { data: data?.images?.base_url, isLoading };
 };

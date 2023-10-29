@@ -15,13 +15,7 @@ const CircleRating = ({
   trailColor?: string;
 }) => {
   return (
-    <div
-      className={
-        'flex h-[40px] w-[40px] shrink-0 rounded-full bg-white p-[2px]' +
-        ' ' +
-        className
-      }
-    >
+    <div className={'flex shrink-0 rounded-full p-[2px] ' + className}>
       <CircularProgressbar
         value={rating}
         maxValue={10}
