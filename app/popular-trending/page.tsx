@@ -1,8 +1,6 @@
 'use client';
 import { BASE_URL } from '@/utils/constants';
 import MoviesAndFilter from '@/components/MoviesList/MoviesAndFilter';
-import { redirect } from 'next/navigation';
-import { hasCookie } from 'cookies-next';
 
 const getKey = (
   pageIndex: number,
@@ -15,7 +13,6 @@ const getKey = (
 };
 
 const PopularTrending = () => {
-  if (!hasCookie('sessionId')) redirect('/');
   return <MoviesAndFilter namePage='Popular' getKey={getKey} />;
 };
 
