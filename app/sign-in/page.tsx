@@ -2,7 +2,7 @@
 
 import { getData } from '@/utils/api';
 import Link from 'next/link';
-import { useState, useEffect, useRef, FormEvent } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { deleteCookie, hasCookie, setCookie } from 'cookies-next';
 
